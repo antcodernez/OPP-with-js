@@ -39,3 +39,8 @@ class learningPath {
         this.added = false
     }
 }
+
+
+export {
+    learningPath
+}

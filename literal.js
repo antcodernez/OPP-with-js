@@ -1,4 +1,46 @@
 // Trabajar con objetos literales no lo hace de manera escalable
+class learningPath {
+    constructor ({
+        courses = [],
+        name,
+        school = null,
+        teachers = [],
+        added = false,
+    }) {
+        this.courses = courses;
+        this.name = name;
+        this.school = school;
+        this.teachers = teachers;
+        this.added = added;
+        this.numberOfCourses = courses.length;
+    }
+
+    addCourse (course) {
+        this.courses.push(course);
+    }
+
+    removeCourse(courseToRemove) {
+        let indice = this.courses.indexOf(courseToRemove);
+        if (indice > -1) 
+            {
+                this.courses.splice(indice, 1);
+            }
+    }
+    addTeacher (teacher) {
+        this.teachers.push(teacher);
+    }   
+    removeTeacher(teachers) {
+        const newArrayTeachers = this.teachers.filter(teacher => teacher !== teachers);
+        this.teachers = newArrayTeachers;
+    }
+    addRoute () {
+        this.added = true
+    }
+    removeRoute () {
+        this.added = false
+    }
+}
+
 
 const People = {
     name: "Jesús",
@@ -88,6 +130,9 @@ class Student {
             this.approvedCourses = approvedCourses;
             this.learningPaths = learningPaths;
         }
+    addLearningPath(path) {
+        this.learningPaths.push(path);
+    }
 }
 
 const Jesus = new Student({
@@ -97,5 +142,9 @@ const Jesus = new Student({
     tiktok: "scriptor",
 })
 
+Jesus.addLearningPath(new learningPath({
+    name: "Writer Yisus",
+    school: null,
+}));
 
 console.table(Jesus);
